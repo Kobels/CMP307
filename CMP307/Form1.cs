@@ -44,6 +44,10 @@ namespace CMP307
             TypeTextBox.Text = tableOfAssets.SelectedRows[0].Cells[4].Value.ToString();
             IPTextBox.Text = tableOfAssets.SelectedRows[0].Cells[5].Value.ToString();
             MACTextBox.Text = tableOfAssets.SelectedRows[0].Cells[6].Value.ToString();
+            DateTextBox.Text = tableOfAssets.SelectedRows[0].Cells[7].Value.ToString();
+            NotesTextBox.Text = tableOfAssets.SelectedRows[0].Cells[8].Value.ToString();
         }
+
+
     }
 }
