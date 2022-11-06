@@ -8,6 +8,7 @@ namespace CMP307
 {
     internal class Cookies
     {
+        public static int sysInfo =0;
         public static int id;
         public static int addOrEdit = 0;
         public static string name;

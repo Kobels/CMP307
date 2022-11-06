@@ -115,7 +115,6 @@ namespace CMP307
         {
             this.Hide();
             View view = new View();
-            view.Show();
         }
     }
 }

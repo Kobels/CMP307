@@ -7,7 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Management;
+using System.Net.NetworkInformation;
 using MySql.Data.MySqlClient;//Connecting Database
+using System.Net.Sockets;
+using System.Net;
 
 namespace CMP307
 {
@@ -16,6 +20,7 @@ namespace CMP307
         public View()
         {
             InitializeComponent();
+            get_system_info();
             populate();
         }
         private void populate()
@@ -76,8 +81,8 @@ namespace CMP307
             addAndEdit screen2 = new addAndEdit();
             Cookies.addOrEdit = 0;
             screen2.Show();
-            
-            
+
+
         }
 
         private void editAsset_Click(object sender, EventArgs e)
@@ -95,6 +100,63 @@ namespace CMP307
             this.Hide();
             addAndEdit screen2 = new addAndEdit();
             screen2.Show();
+        }
+
+        private void get_system_info()
+        {
+            ManagementObjectSearcher searchers = new ManagementObjectSearcher("select * from Win32_ComputerSystem");
+
+            string name = "TEST";
+            string model = "TEST";
+            string manufacturer = "TEST";
+            string type = "TEST";
+            string MAC = "TEST";
+            string ip = "TEST";
+            foreach (ManagementObject query in searchers.Get())
+            {
+                name = query["name"].ToString();
+                model = query["model"].ToString();
+                manufacturer = query["Manufacturer"].ToString();
+                type = System.Environment.GetEnvironmentVariable("PROCESSOR_ARCHITECTURE");
+                MAC = get_MAC_address();
+                ip = GetLocalIPAddress();
+
+
+            }
+            string sqlQuery;
+            MySqlConnection conn;
+            string connString = "Data Source =Lochnagar.abertay.ac.uk; Initial Catalog =sql2001496; User ID =sql2001496; password =7LzccUmhDnS3;";
+            conn = new MySqlConnection(connString);
+
+            conn.Open();
+            Console.WriteLine("Connection Successfully established.\n");
+            sqlQuery = "INSERT INTO assets (System_name,Model,Manufacture,Type,IP_address,MAC_Adress) VALUES ('" + name + "','" + model + "','" + manufacturer + "','" + type + "','" + ip + "','" + MAC + "')";
+            MySqlCommand command = new MySqlCommand(sqlQuery, conn);
+            MySqlDataReader data = command.ExecuteReader();
+
+            Cookies.sysInfo = 1;
+        }
+        private static String get_MAC_address()
+        {
+            string MacAddress;
+            NetworkInterface[] nics = NetworkInterface.GetAllNetworkInterfaces();
+
+            MacAddress = Convert.ToString(nics[0].GetPhysicalAddress());
+
+            return MacAddress;
+
+        }
+        public static string GetLocalIPAddress()
+        {
+            var host = Dns.GetHostEntry(Dns.GetHostName());
+            foreach (var ip in host.AddressList)
+            {
+                if (ip.AddressFamily == AddressFamily.InterNetwork)
+                {
+                    return ip.ToString();
+                }
+            }
+            return null;
         }
     }
 }
