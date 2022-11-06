@@ -1,6 +1,6 @@
 ﻿namespace CMP307
 {
-    partial class Form1
+    partial class View
     {
         /// <summary>
         /// Required designer variable.
@@ -33,6 +33,13 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tableOfAssets = new Guna.UI2.WinForms.Guna2DataGridView();
             this.assetViewer = new System.Windows.Forms.GroupBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.NotesTextBox = new Guna.UI2.WinForms.Guna2TextBox();
             this.DateTextBox = new Guna.UI2.WinForms.Guna2TextBox();
@@ -42,13 +49,9 @@
             this.ManufactureTextBox = new Guna.UI2.WinForms.Guna2TextBox();
             this.ModelTextBox = new Guna.UI2.WinForms.Guna2TextBox();
             this.SystemNameTextBox = new Guna.UI2.WinForms.Guna2TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
+            this.addAsset = new Guna.UI2.WinForms.Guna2Button();
+            this.editAsset = new Guna.UI2.WinForms.Guna2Button();
+            this.deleteAsset = new Guna.UI2.WinForms.Guna2Button();
             ((System.ComponentModel.ISupportInitialize)(this.tableOfAssets)).BeginInit();
             this.assetViewer.SuspendLayout();
             this.SuspendLayout();
@@ -86,7 +89,7 @@
             this.tableOfAssets.Name = "tableOfAssets";
             this.tableOfAssets.ReadOnly = true;
             this.tableOfAssets.RowHeadersVisible = false;
-            this.tableOfAssets.Size = new System.Drawing.Size(978, 274);
+            this.tableOfAssets.Size = new System.Drawing.Size(958, 274);
             this.tableOfAssets.TabIndex = 0;
             this.tableOfAssets.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
             this.tableOfAssets.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -132,10 +135,73 @@
             this.assetViewer.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.assetViewer.Location = new System.Drawing.Point(11, 348);
             this.assetViewer.Name = "assetViewer";
-            this.assetViewer.Size = new System.Drawing.Size(978, 95);
+            this.assetViewer.Size = new System.Drawing.Size(961, 95);
             this.assetViewer.TabIndex = 1;
             this.assetViewer.TabStop = false;
             this.assetViewer.Text = "Asset";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(766, 26);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(83, 13);
+            this.label8.TabIndex = 15;
+            this.label8.Text = "Addtional notes:";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(673, 45);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(78, 13);
+            this.label7.TabIndex = 14;
+            this.label7.Text = "purchase date:";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(543, 45);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(73, 13);
+            this.label6.TabIndex = 13;
+            this.label6.Text = "MAC address:";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(450, 45);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(60, 13);
+            this.label5.TabIndex = 12;
+            this.label5.Text = "IP address:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(348, 45);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(31, 13);
+            this.label4.TabIndex = 11;
+            this.label4.Text = "Type";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(241, 45);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(70, 13);
+            this.label3.TabIndex = 10;
+            this.label3.Text = "Manufacture:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(121, 45);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(39, 13);
+            this.label2.TabIndex = 9;
+            this.label2.Text = "Model:";
             // 
             // label1
             // 
@@ -159,7 +225,7 @@
             this.NotesTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.NotesTextBox.ForeColor = System.Drawing.Color.White;
             this.NotesTextBox.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.NotesTextBox.Location = new System.Drawing.Point(786, 45);
+            this.NotesTextBox.Location = new System.Drawing.Point(769, 42);
             this.NotesTextBox.Multiline = true;
             this.NotesTextBox.Name = "NotesTextBox";
             this.NotesTextBox.PasswordChar = '\0';
@@ -189,7 +255,7 @@
             this.DateTextBox.PlaceholderText = "";
             this.DateTextBox.ReadOnly = true;
             this.DateTextBox.SelectedText = "";
-            this.DateTextBox.Size = new System.Drawing.Size(104, 24);
+            this.DateTextBox.Size = new System.Drawing.Size(75, 24);
             this.DateTextBox.TabIndex = 6;
             // 
             // MACTextBox
@@ -330,79 +396,68 @@
             this.SystemNameTextBox.Size = new System.Drawing.Size(112, 24);
             this.SystemNameTextBox.TabIndex = 0;
             // 
-            // label2
+            // addAsset
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(121, 45);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(39, 13);
-            this.label2.TabIndex = 9;
-            this.label2.Text = "Model:";
+            this.addAsset.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.addAsset.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.addAsset.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.addAsset.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.addAsset.FillColor = System.Drawing.Color.LimeGreen;
+            this.addAsset.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.addAsset.ForeColor = System.Drawing.Color.White;
+            this.addAsset.Location = new System.Drawing.Point(12, 6);
+            this.addAsset.Name = "addAsset";
+            this.addAsset.Size = new System.Drawing.Size(149, 37);
+            this.addAsset.TabIndex = 2;
+            this.addAsset.Text = "Add Asset";
+            this.addAsset.Click += new System.EventHandler(this.addAsset_Click);
             // 
-            // label3
+            // editAsset
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(241, 45);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(70, 13);
-            this.label3.TabIndex = 10;
-            this.label3.Text = "Manufacture:";
+            this.editAsset.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.editAsset.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.editAsset.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.editAsset.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.editAsset.Enabled = false;
+            this.editAsset.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.editAsset.ForeColor = System.Drawing.Color.White;
+            this.editAsset.Location = new System.Drawing.Point(428, 6);
+            this.editAsset.Name = "editAsset";
+            this.editAsset.Size = new System.Drawing.Size(150, 37);
+            this.editAsset.TabIndex = 3;
+            this.editAsset.Text = "Edit asset";
+            this.editAsset.Click += new System.EventHandler(this.editAsset_Click);
             // 
-            // label4
+            // deleteAsset
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(348, 45);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(31, 13);
-            this.label4.TabIndex = 11;
-            this.label4.Text = "Type";
+            this.deleteAsset.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.deleteAsset.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.deleteAsset.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.deleteAsset.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.deleteAsset.Enabled = false;
+            this.deleteAsset.FillColor = System.Drawing.Color.Crimson;
+            this.deleteAsset.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.deleteAsset.ForeColor = System.Drawing.Color.White;
+            this.deleteAsset.Location = new System.Drawing.Point(819, 6);
+            this.deleteAsset.Name = "deleteAsset";
+            this.deleteAsset.Size = new System.Drawing.Size(150, 37);
+            this.deleteAsset.TabIndex = 4;
+            this.deleteAsset.Text = "Delete asset";
+            this.deleteAsset.Click += new System.EventHandler(this.deleteAsset_Click);
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(450, 45);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(60, 13);
-            this.label5.TabIndex = 12;
-            this.label5.Text = "IP address:";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(543, 45);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(73, 13);
-            this.label6.TabIndex = 13;
-            this.label6.Text = "MAC address:";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(673, 45);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(78, 13);
-            this.label7.TabIndex = 14;
-            this.label7.Text = "purchase date:";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(783, 29);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(83, 13);
-            this.label8.TabIndex = 15;
-            this.label8.Text = "Addtional notes:";
-            // 
-            // Form1
+            // View
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(1001, 455);
+            this.ClientSize = new System.Drawing.Size(984, 455);
+            this.Controls.Add(this.deleteAsset);
+            this.Controls.Add(this.editAsset);
+            this.Controls.Add(this.addAsset);
             this.Controls.Add(this.assetViewer);
             this.Controls.Add(this.tableOfAssets);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "View";
+            this.Text = "Viewing Assets";
             ((System.ComponentModel.ISupportInitialize)(this.tableOfAssets)).EndInit();
             this.assetViewer.ResumeLayout(false);
             this.assetViewer.PerformLayout();
@@ -430,6 +485,9 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
+        private Guna.UI2.WinForms.Guna2Button addAsset;
+        private Guna.UI2.WinForms.Guna2Button editAsset;
+        private Guna.UI2.WinForms.Guna2Button deleteAsset;
     }
 }
 
