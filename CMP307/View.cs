@@ -23,15 +23,15 @@ namespace CMP307
             get_system_info();
             populate();
         }
-        private void populate()
+        private void populate()//This will populate the dataview from data from the database
         {
-            MySqlConnection conn;
+            MySqlConnection conn;//Sets up the connection
             string connString = "Data Source =Lochnagar.abertay.ac.uk; Initial Catalog =sql2001496; User ID =sql2001496; password =7LzccUmhDnS3;";
             conn = new MySqlConnection(connString);
 
             conn.Open();
             Console.WriteLine("Connection Successfully established.\n");
-            string query = "SELECT * FROM assets";
+            string query = "SELECT * FROM assets";//This will get everything from the table in the database
             MySqlCommand command = new MySqlCommand(query, conn);
             MySqlDataAdapter adapter = new MySqlDataAdapter(command);
             DataTable dt = new DataTable();
@@ -42,7 +42,7 @@ namespace CMP307
             Console.WriteLine("Connection Successfully Closed\n");
         }
 
-        private void tableOfAssets_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void tableOfAssets_CellClick(object sender, DataGridViewCellEventArgs e)//This gets data from a row that is pressed
         {
             SystemNameTextBox.Text = tableOfAssets.SelectedRows[0].Cells[1].Value.ToString();
             ModelTextBox.Text = tableOfAssets.SelectedRows[0].Cells[2].Value.ToString();
@@ -58,7 +58,7 @@ namespace CMP307
 
         }
 
-        private void deleteAsset_Click(object sender, EventArgs e)
+        private void deleteAsset_Click(object sender, EventArgs e)//This deletes a entry in the database
         {
             MySqlConnection conn;
             string connString = "Data Source =Lochnagar.abertay.ac.uk; Initial Catalog =sql2001496; User ID =sql2001496; password =7LzccUmhDnS3;";
@@ -75,7 +75,7 @@ namespace CMP307
             Console.WriteLine("Connection Successfully Closed\n");
         }
 
-        private void addAsset_Click(object sender, EventArgs e)
+        private void addAsset_Click(object sender, EventArgs e)//this moves to the add screen
         {
             this.Hide();
             addAndEdit screen2 = new addAndEdit();
@@ -85,7 +85,7 @@ namespace CMP307
 
         }
 
-        private void editAsset_Click(object sender, EventArgs e)
+        private void editAsset_Click(object sender, EventArgs e)//this gets data from the entry and adds it to the cookies class
         {
             Cookies.addOrEdit = 1;
             Cookies.id = Convert.ToInt32(tableOfAssets.SelectedRows[0].Cells[0].Value);
@@ -102,9 +102,9 @@ namespace CMP307
             screen2.Show();
         }
 
-        private void get_system_info()
+        private void get_system_info()//this will get the system info
         {
-            ManagementObjectSearcher searchers = new ManagementObjectSearcher("select * from Win32_ComputerSystem");
+            ManagementObjectSearcher searchers = new ManagementObjectSearcher("select * from Win32_ComputerSystem");//The looks for the file with computer info
 
             string name = "TEST";
             string model = "TEST";
@@ -112,7 +112,7 @@ namespace CMP307
             string type = "TEST";
             string MAC = "TEST";
             string ip = "TEST";
-            foreach (ManagementObject query in searchers.Get())
+            foreach (ManagementObject query in searchers.Get())//appends it to strings
             {
                 name = query["name"].ToString();
                 model = query["model"].ToString();
@@ -123,20 +123,20 @@ namespace CMP307
 
 
             }
-            string sqlQuery;
+            string sqlQuery;//set up the connection
             MySqlConnection conn;
             string connString = "Data Source =Lochnagar.abertay.ac.uk; Initial Catalog =sql2001496; User ID =sql2001496; password =7LzccUmhDnS3;";
             conn = new MySqlConnection(connString);
 
-            conn.Open();
+            conn.Open();//insets the system info into the table
             Console.WriteLine("Connection Successfully established.\n");
             sqlQuery = "INSERT INTO assets (System_name,Model,Manufacture,Type,IP_address,MAC_Adress) VALUES ('" + name + "','" + model + "','" + manufacturer + "','" + type + "','" + ip + "','" + MAC + "')";
             MySqlCommand command = new MySqlCommand(sqlQuery, conn);
             MySqlDataReader data = command.ExecuteReader();
 
-            Cookies.sysInfo = 1;
+            Cookies.sysInfo = 1;//makes sure it only happens once
         }
-        private static String get_MAC_address()
+        private static String get_MAC_address()//this function get the mac address of the main network controller
         {
             string MacAddress;
             NetworkInterface[] nics = NetworkInterface.GetAllNetworkInterfaces();
@@ -146,7 +146,7 @@ namespace CMP307
             return MacAddress;
 
         }
-        public static string GetLocalIPAddress()
+        public static string GetLocalIPAddress()//get the local ipaddress of the machine
         {
             var host = Dns.GetHostEntry(Dns.GetHostName());
             foreach (var ip in host.AddressList)

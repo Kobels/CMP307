@@ -15,7 +15,7 @@ namespace CMP307
         public addAndEdit()
         {
             InitializeComponent();
-            if(Cookies.addOrEdit == 1)
+            if(Cookies.addOrEdit == 1)//this checks to see if its and edit or and add and changes the form to respect that choice
             {
                 SystemNameTextBox.Text = Cookies.name;
                 ModelTextBox.Text = Cookies.model;
@@ -25,7 +25,7 @@ namespace CMP307
                 MACaddressTextBox.Text = Cookies.mac;
                 DateTextBox.Text = Cookies.date;
                 AddtionalNotesTextBox.Text = Cookies.notes;
-
+                AddButton.Text = "Edit";
             }
             else
             {
@@ -37,6 +37,7 @@ namespace CMP307
                 MACaddressTextBox.Text = "";
                 DateTextBox.Text = "";
                 AddtionalNotesTextBox.Text = "";
+                AddButton.Text = "Add";
             }
             
         }
@@ -44,7 +45,7 @@ namespace CMP307
         private void AddButton_Click(object sender, EventArgs e)
         {
 
-            if(Cookies.addOrEdit == 1)
+            if(Cookies.addOrEdit == 1)//this will either run the edit SQL statement or the add sql statement
             {
                 editAsset();
             }
@@ -55,7 +56,7 @@ namespace CMP307
 
         }
 
-        public void addAsset()
+        public void addAsset()//this is the code that adds assest to the 
         {
             string query;
             MySqlConnection conn;
@@ -64,7 +65,7 @@ namespace CMP307
 
             conn.Open();
             Console.WriteLine("Connection Successfully established.\n");
-            if (DateTextBox.Text.Length > 0)
+            if (DateTextBox.Text.Length > 0)//This changes the SQL satement to not include the date if no date is entered
             {
                 query = "INSERT INTO assets (System_name,Model,Manufacture,Type,IP_address,MAC_Adress,Purchase_date,Addtional_info) VALUES ('" + SystemNameTextBox.Text + "','" + ModelTextBox.Text + "','" + manufacureTextBox.Text + "','" + TypeTextBox.Text + "','" + IPaddressTextBox.Text + "','" + MACaddressTextBox.Text + "','" + DateTextBox.Text + "','" + AddtionalNotesTextBox.Text + "')";
             }
@@ -73,7 +74,7 @@ namespace CMP307
                 query = "INSERT INTO assets (System_name,Model,Manufacture,Type,IP_address,MAC_Adress,Addtional_info) VALUES ('" + SystemNameTextBox.Text + "','" + ModelTextBox.Text + "','" + manufacureTextBox.Text + "','" + TypeTextBox.Text + "','" + IPaddressTextBox.Text + "','" + MACaddressTextBox.Text + "','" + AddtionalNotesTextBox.Text + "')";
             }
 
-                MySqlCommand command = new MySqlCommand(query, conn);
+                MySqlCommand command = new MySqlCommand(query, conn);//commits the sql statement
                 MySqlDataReader data = command.ExecuteReader();
                 this.Hide();
                 View view = new View();
@@ -85,13 +86,13 @@ namespace CMP307
             
         }
 
-        private void editAsset()
+        private void editAsset()//this is for sql statement for updating an exsiting entry
         {
             string query;
-            MySqlConnection conn;
+            MySqlConnection conn;//creating the connection
             string connString = "Data Source =Lochnagar.abertay.ac.uk; Initial Catalog =sql2001496; User ID =sql2001496; password =7LzccUmhDnS3;";
             conn = new MySqlConnection(connString);
-        if (DateTextBox.Text.Length > 0)
+        if (DateTextBox.Text.Length > 0)//this removes the date if no date is entered from the sql statement
         {
             query = "UPDATE assets SET System_name = '" + SystemNameTextBox.Text + "',Model = '" + ModelTextBox.Text + "',Manufacture = '" + manufacureTextBox.Text + "',Type = '" + TypeTextBox.Text + "',IP_Address = '" + IPaddressTextBox.Text + "', MAC_Adress'" + MACaddressTextBox.Text + "',Purchase_date'" + PurchaseDate.Text + "',Addtional_info'" + AddtionalNotesTextBox.Text + "' WHERE asset_ID ='" + Cookies.id + "'";
         }
@@ -101,7 +102,7 @@ namespace CMP307
         }
             conn.Open();
             MySqlCommand command = new MySqlCommand(query, conn);
-            MySqlDataReader data = command.ExecuteReader();
+            MySqlDataReader data = command.ExecuteReader();//sends teh query to the database
             this.Hide();
             View view = new View();
             MessageBox.Show("Asset has been Changed!");
@@ -111,7 +112,7 @@ namespace CMP307
             Console.WriteLine("Connection Successfully established.\n");
         }
 
-        private void BackButton_Click(object sender, EventArgs e)
+        private void BackButton_Click(object sender, EventArgs e)//goes back to the view screen
         {
             this.Hide();
             View view = new View();
