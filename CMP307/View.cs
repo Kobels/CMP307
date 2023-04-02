@@ -20,7 +20,7 @@ namespace CMP307
         public View()
         {
             InitializeComponent();
-            if(Cookies.sysInfo == 0)
+            if (Cookies.sysInfo == 0)
             {
                 get_system_info();
             }
@@ -127,16 +127,20 @@ namespace CMP307
 
 
             }
-            string sqlQuery;//set up the connection
-            MySqlConnection conn;
-            string connString = "Data Source =Lochnagar.abertay.ac.uk; Initial Catalog =sql2001496; User ID =sql2001496; password =7LzccUmhDnS3;";
-            conn = new MySqlConnection(connString);
+            if (!stopDuplcate(name,MAC))
+            {
+                string sqlQuery;//set up the connection
+                MySqlConnection conn;
+                string connString = "Data Source =Lochnagar.abertay.ac.uk; Initial Catalog =sql2001496; User ID =sql2001496; password =7LzccUmhDnS3;";
+                conn = new MySqlConnection(connString);
 
-            conn.Open();//insets the system info into the table
-            Console.WriteLine("Connection Successfully established.\n");
-            sqlQuery = "INSERT INTO assets (System_name,Model,Manufacture,Type,IP_address,MAC_Adress) VALUES ('" + name + "','" + model + "','" + manufacturer + "','" + type + "','" + ip + "','" + MAC + "')";
-            MySqlCommand command = new MySqlCommand(sqlQuery, conn);
-            MySqlDataReader data = command.ExecuteReader();
+                conn.Open();//insets the system info into the table
+                Console.WriteLine("Connection Successfully established.\n");
+                sqlQuery = "INSERT INTO assets (System_name,Model,Manufacture,Type,IP_address,MAC_Adress) VALUES ('" + name + "','" + model + "','" + manufacturer + "','" + type + "','" + ip + "','" + MAC + "')";
+                MySqlCommand command = new MySqlCommand(sqlQuery, conn);
+                MySqlDataReader data = command.ExecuteReader();
+            }
+
 
             Cookies.sysInfo = 1;//makes sure it only happens once
         }
@@ -162,7 +166,7 @@ namespace CMP307
             }
             return null;
         }
-        public static void stopDuplcate(string name,string MAC) 
+        public static bool stopDuplcate(string name, string MAC) 
         {
             MySqlConnection conn;//Sets up the connection
             string connString = "Data Source =Lochnagar.abertay.ac.uk; Initial Catalog =sql2001496; User ID =sql2001496; password =7LzccUmhDnS3;";
@@ -170,20 +174,21 @@ namespace CMP307
 
             conn.Open();
             Console.WriteLine("Connection Successfully established.\n");
-            string query = "SELECT System_name, MAC_address FROM assets WHERE Sytem_name = '" + name + "' AND MAC_address = '" + MAC +"'";//This will get all asset MAC address and names from the table in the database
+            string query = "SELECT System_name, MAC_Adress FROM assets WHERE System_name = '" + name + "' AND MAC_Adress = '" + MAC +"'";//This will get all asset MAC address and names from the table in the database
             MySqlCommand command = new MySqlCommand(query, conn);
             MySqlDataAdapter adapter = new MySqlDataAdapter(command);
             DataTable dt = new DataTable();
             adapter.Fill(dt);
             MySqlDataReader data = command.ExecuteReader();
 
-            if (data.Read())
+            if (data.Read() == true)
             {
-                Cookies.sysInfo = 1;
+
+                return true;
             }
             else
             {
-                Cookies.sysInfo = 0;
+                return false;
             }
         }
     }
