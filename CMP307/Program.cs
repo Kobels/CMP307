@@ -16,7 +16,7 @@ namespace CMP307
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new View());
+            Application.Run(new login());
         }
     }
 }
