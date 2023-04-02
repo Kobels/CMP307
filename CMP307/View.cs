@@ -78,6 +78,16 @@ namespace CMP307
 
             conn.Close();
             Console.WriteLine("Connection Successfully Closed\n");
+            editAsset.Enabled = false;
+            deleteAsset.Enabled = false;
+            SystemNameTextBox.Text = "";
+            ModelTextBox.Text = "";
+            ManufactureTextBox.Text = "";
+            TypeTextBox.Text = "";
+            IPTextBox.Text = "";
+            MACTextBox.Text = "";
+            DateTextBox.Text = "";
+            NotesTextBox.Text = "";
         }
 
         private void addAsset_Click(object sender, EventArgs e)//this moves to the add screen

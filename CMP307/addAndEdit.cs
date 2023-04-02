@@ -104,6 +104,14 @@ namespace CMP307
             MySqlCommand command = new MySqlCommand(query, conn);
             MySqlDataReader data = command.ExecuteReader();//sends teh query to the database
             this.Close();
+            SystemNameTextBox.Text = "";
+            ModelTextBox.Text = "";
+            manufacureTextBox.Text = "";
+            TypeTextBox.Text = "";
+            IPaddressTextBox.Text = "";
+            MACaddressTextBox.Text = "";
+            DateTextBox.Text = "";
+            AddtionalNotesTextBox.Text = "";
             View view = new View();
             MessageBox.Show("Asset has been Changed!");
             view.Show();
@@ -114,7 +122,16 @@ namespace CMP307
 
         private void BackButton_Click(object sender, EventArgs e)//goes back to the view screen
         {
+
             this.Close();
+            SystemNameTextBox.Text = "";
+            ModelTextBox.Text = "";
+            manufacureTextBox.Text = "";
+            TypeTextBox.Text = "";
+            IPaddressTextBox.Text = "";
+            MACaddressTextBox.Text = "";
+            DateTextBox.Text = "";
+            AddtionalNotesTextBox.Text = "";
             View view = new View();
             view.Show();
         }
