@@ -20,7 +20,11 @@ namespace CMP307
         public View()
         {
             InitializeComponent();
-            get_system_info();
+            if(Cookies.sysInfo == 0)
+            {
+                get_system_info();
+            }
+
             populate();
         }
         private void populate()//This will populate the dataview from data from the database
@@ -157,6 +161,30 @@ namespace CMP307
                 }
             }
             return null;
+        }
+        public static void stopDuplcate(string name,string MAC) 
+        {
+            MySqlConnection conn;//Sets up the connection
+            string connString = "Data Source =Lochnagar.abertay.ac.uk; Initial Catalog =sql2001496; User ID =sql2001496; password =7LzccUmhDnS3;";
+            conn = new MySqlConnection(connString);
+
+            conn.Open();
+            Console.WriteLine("Connection Successfully established.\n");
+            string query = "SELECT System_name, MAC_address FROM assets WHERE Sytem_name = '" + name + "' AND MAC_address = '" + MAC +"'";//This will get all asset MAC address and names from the table in the database
+            MySqlCommand command = new MySqlCommand(query, conn);
+            MySqlDataAdapter adapter = new MySqlDataAdapter(command);
+            DataTable dt = new DataTable();
+            adapter.Fill(dt);
+            MySqlDataReader data = command.ExecuteReader();
+
+            if (data.Read())
+            {
+                Cookies.sysInfo = 1;
+            }
+            else
+            {
+                Cookies.sysInfo = 0;
+            }
         }
     }
 }

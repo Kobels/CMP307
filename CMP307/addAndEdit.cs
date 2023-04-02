@@ -94,8 +94,8 @@ namespace CMP307
             conn = new MySqlConnection(connString);
         if (DateTextBox.Text.Length > 0)//this removes the date if no date is entered from the sql statement
         {
-            query = "UPDATE assets SET System_name = '" + SystemNameTextBox.Text + "',Model = '" + ModelTextBox.Text + "',Manufacture = '" + manufacureTextBox.Text + "',Type = '" + TypeTextBox.Text + "',IP_Address = '" + IPaddressTextBox.Text + "', MAC_Adress'" + MACaddressTextBox.Text + "',Purchase_date'" + PurchaseDate.Text + "',Addtional_info'" + AddtionalNotesTextBox.Text + "' WHERE asset_ID ='" + Cookies.id + "'";
-        }
+                query = "UPDATE assets SET System_name = '" + SystemNameTextBox.Text + "',Model = '" + ModelTextBox.Text + "',Manufacture = '" + manufacureTextBox.Text + "',Type = '" + TypeTextBox.Text + "',IP_Address = '" + IPaddressTextBox.Text + "', MAC_Adress='" + MACaddressTextBox.Text + "',Purchase_date ='"+ DateTextBox.Text+"',Addtional_info='" + AddtionalNotesTextBox.Text + "' WHERE asset_ID ='" + Cookies.id + "'";
+            }
         else
         {
             query = "UPDATE assets SET System_name = '" + SystemNameTextBox.Text + "',Model = '" + ModelTextBox.Text + "',Manufacture = '" + manufacureTextBox.Text + "',Type = '" + TypeTextBox.Text + "',IP_Address = '" + IPaddressTextBox.Text + "', MAC_Adress='" + MACaddressTextBox.Text + "',Addtional_info='" + AddtionalNotesTextBox.Text + "' WHERE asset_ID ='" + Cookies.id + "'";
@@ -116,6 +116,7 @@ namespace CMP307
         {
             this.Hide();
             View view = new View();
+            view.Show();
         }
     }
 }
