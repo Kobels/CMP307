@@ -103,7 +103,7 @@ namespace CMP307
             conn.Open();
             MySqlCommand command = new MySqlCommand(query, conn);
             MySqlDataReader data = command.ExecuteReader();//sends teh query to the database
-            this.Hide();
+            this.Close();
             View view = new View();
             MessageBox.Show("Asset has been Changed!");
             view.Show();
@@ -114,7 +114,7 @@ namespace CMP307
 
         private void BackButton_Click(object sender, EventArgs e)//goes back to the view screen
         {
-            this.Hide();
+            this.Close();
             View view = new View();
             view.Show();
         }

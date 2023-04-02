@@ -57,6 +57,7 @@ namespace CMP307
             DateTextBox.Text = tableOfAssets.SelectedRows[0].Cells[7].Value.ToString();
             NotesTextBox.Text = tableOfAssets.SelectedRows[0].Cells[8].Value.ToString();
 
+
             editAsset.Enabled = true;
             deleteAsset.Enabled = true;
 
