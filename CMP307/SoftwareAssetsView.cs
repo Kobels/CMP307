@@ -51,5 +51,20 @@ namespace CMP307
             conn.Close();
             Console.WriteLine("Connection Successfully Closed\n");
         }
+
+        private void addSoftwareAsset_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void editSoftwareAsset_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void delSoftwareasset_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
