@@ -36,7 +36,7 @@ namespace CMP307
 
                 if (data.Read() == true)
                 {
-                    View view = new View();
+                    ViewAsset view = new ViewAsset();
                     this.Hide();
                     view.Show();
                 }

@@ -77,7 +77,7 @@ namespace CMP307
                 MySqlCommand command = new MySqlCommand(query, conn);//commits the sql statement
                 MySqlDataReader data = command.ExecuteReader();
                 this.Hide();
-                View view = new View();
+            ViewAsset view = new ViewAsset();
                 MessageBox.Show("Asset has been added!");
                 view.Show();
 
@@ -112,7 +112,7 @@ namespace CMP307
             MACaddressTextBox.Text = "";
             DateTextBox.Text = "";
             AddtionalNotesTextBox.Text = "";
-            View view = new View();
+            ViewAsset view = new ViewAsset();
             MessageBox.Show("Asset has been Changed!");
             view.Show();
 
@@ -132,7 +132,7 @@ namespace CMP307
             MACaddressTextBox.Text = "";
             DateTextBox.Text = "";
             AddtionalNotesTextBox.Text = "";
-            View view = new View();
+            ViewAsset view = new ViewAsset();
             view.Show();
         }
     }
