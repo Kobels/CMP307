@@ -25,7 +25,7 @@ namespace CMP307
             try
             {
                 conn.Open();
-                Console.WriteLine("Connection Successfully established.\n");
+                Console.WriteLine("Connection Successfully established. getting user names and passwords to test logins with\n");
                 string query = "SELECT * FROM users WHERE  name = '" + userTextBox.Text + "' AND passowrd = '" + PasswordTextBox.Text + "'";
 
                 MySqlCommand command = new MySqlCommand(query, conn);
@@ -50,6 +50,8 @@ namespace CMP307
             {
                 Console.WriteLine(err.Message);
             }
+            conn.Close();
+            Console.WriteLine("Connection Successfully Closed\n");
         }
     }
 }
